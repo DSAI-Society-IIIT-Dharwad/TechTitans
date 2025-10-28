@@ -98,23 +98,24 @@ class RAGService:
             print(f"[ERROR] Error loading documents: {str(e)}")
             return []
     
-    def create_vectorstore(self, documents: List[Document], chunk_size: int = 500, chunk_overlap: int = 50):
+    def create_vectorstore(self, documents: List[Document], chunk_size: int = 800, chunk_overlap: int = 100):
         """
-        Create vector store from documents
+        Create vector store from documents with optimized chunking
         
         Args:
             documents: List of documents
-            chunk_size: Size of text chunks
-            chunk_overlap: Overlap between chunks
+            chunk_size: Size of text chunks (increased for better context)
+            chunk_overlap: Overlap between chunks (increased to preserve context)
         """
-        print("Creating vector store...")
+        print("Creating vector store with optimized chunking...")
         
-        # Split documents into chunks
+        # Split documents into chunks with better separators
         text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
             length_function=len,
-            separators=["\n\n", "\n", ". ", " ", ""]
+            # Better separators for legal text
+            separators=["\n\n", "\n", ". ", "• ", "- ", " ", ""]
         )
         
         chunks = text_splitter.split_documents(documents)
@@ -169,7 +170,7 @@ class RAGService:
         
         retriever = self.vectorstore.as_retriever(
             search_type="similarity",
-            search_kwargs={"k": 3}  # Retrieve top 3 most relevant chunks
+            search_kwargs={"k": 5}  # Retrieve top 5 most relevant chunks for better context
         )
         
         self.retriever = retriever
@@ -189,25 +190,41 @@ class RAGService:
         if not self.vectorstore:
             return "I'm not ready yet. Please load the knowledge base first.", []
         
-        # Retrieve relevant documents
+        # Retrieve relevant documents with better filtering
         relevant_docs = self.retriever.get_relevant_documents(query)
         
         if not relevant_docs:
-            return "I couldn't find specific information about that in my knowledge base. Could you rephrase your question or ask about Indian Constitution, fundamental rights, or legal procedures?", []
+            return "I couldn't find specific information about that in my knowledge base. Could you rephrase your question or ask about Indian Constitution, fundamental rights, criminal law (IPC sections), consumer rights, or legal procedures?", []
         
-        # Get unique content (avoid repetition)
+        # Get unique content with better deduplication
         seen_content = set()
         unique_docs = []
-        for doc in relevant_docs[:5]:
+        
+        # First pass: get highly relevant unique documents
+        for doc in relevant_docs:
             content = doc.page_content.strip()
-            if content not in seen_content and len(content) > 50:
+            # Check if content is unique enough (not just substring)
+            is_unique = True
+            for seen in seen_content:
+                # If this content is very similar to something we've seen, skip it
+                if len(content) > 100 and (content in seen or seen in content):
+                    is_unique = False
+                    break
+            
+            if is_unique and len(content) > 50:
                 seen_content.add(content)
                 unique_docs.append(doc)
-                if len(unique_docs) >= 2:
+                # Get top 3 most relevant unique documents
+                if len(unique_docs) >= 3:
                     break
         
-        if not unique_docs:
-            unique_docs = relevant_docs[:1]
+        # If we didn't get enough, relax criteria
+        if len(unique_docs) < 2:
+            for doc in relevant_docs[:3]:
+                if doc not in unique_docs:
+                    unique_docs.append(doc)
+                if len(unique_docs) >= 2:
+                    break
         
         # Prepare context from unique documents
         context = "\n\n---\n\n".join([doc.page_content for doc in unique_docs])
@@ -228,32 +245,65 @@ class RAGService:
     
     def _create_response_from_context(self, query: str, context: str) -> str:
         """
-        Create a response from context
-        This is a simplified version - in production use a proper LLM
+        Create an intelligent response from context with user-desired formatting
         """
-        # Clean up context - remove duplicates and extra whitespace
+        # Extract and clean context
         lines = []
-        seen_lines = set()
+        seen_content = set()
         for line in context.split('\n'):
             line = line.strip()
-            if line and line not in seen_lines and len(line) > 20:
-                seen_lines.add(line)
+            if line and line not in seen_content and len(line) > 15:
+                seen_content.add(line)
                 lines.append(line)
         
-        clean_context = '\n\n'.join(lines[:10])  # Limit to first 10 unique lines
+        # Take substantial content
+        clean_context = '\n\n'.join(lines[:25])  # More content for comprehensive answers
         
-        # Limit total length
-        if len(clean_context) > 1200:
-            clean_context = clean_context[:1200] + "..."
+        # Limit total length reasonably
+        if len(clean_context) > 3500:
+            clean_context = clean_context[:3500]
+            last_period = clean_context.rfind('.')
+            if last_period > 3000:
+                clean_context = clean_context[:last_period + 1]
         
-        # Simple template-based response with better formatting
-        response = f"""**Here's what I found about your question:**
+        # Format exactly as user desires
+        response = f"""**Detailed Explanation:**
 
 {clean_context}
 
 ---
 
-💡 **Please Note**: This is general legal information for educational purposes only. For advice specific to your situation, please consult a qualified lawyer."""
+**Related Legal Information:**
+
+1. **Applicable Laws and Acts**
+   The above information is based on current Indian laws including the Constitution of India, Indian Penal Code (IPC), Code of Criminal Procedure (CrPC), and various special acts as applicable to your query.
+
+2. **Legal Procedures**
+   Follow the procedures outlined above. Ensure you collect all necessary documents and evidence. Approach the appropriate authorities or courts as specified.
+
+3. **Your Rights**
+   You have fundamental and legal rights under Indian law. These rights are protected by the Constitution and can be enforced through legal mechanisms including filing complaints, FIRs, or approaching consumer forums and courts.
+
+4. **Remedies Available**
+   Various remedies are available depending on the nature of your issue - criminal prosecution, civil suits, consumer complaints, writ petitions, or administrative complaints to concerned authorities.
+
+5. **Important Contacts**
+   • Police: 100
+   • Women Helpline: 1091 / 181
+   • Child Helpline: 1098
+   • Cyber Crime: 1930
+   • Legal Aid: Contact District Legal Services Authority
+
+---
+
+**⚠ Important Disclaimer:**
+
+This information is provided for general educational purposes only. It should not be considered as legal advice. Laws and regulations may change over time. For specific legal matters and personalized guidance, please consult a qualified lawyer or legal expert.
+
+---
+
+**💡 Please Note:** 
+This is general legal information for educational purposes only. For advice specific to your situation, please consult a qualified lawyer."""
         
         return response
     

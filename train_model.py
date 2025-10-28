@@ -71,11 +71,11 @@ def main():
     
     print(f"Loaded {len(documents)} documents")
     
-    # Create vectorstore
+    # Create vectorstore with optimized parameters
     rag_service.create_vectorstore(
         documents=documents,
-        chunk_size=500,
-        chunk_overlap=50
+        chunk_size=800,  # Larger chunks for better context
+        chunk_overlap=100  # More overlap to preserve meaning
     )
     
     print("[OK] Vector store created successfully")

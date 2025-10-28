@@ -1,50 +1,58 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { User, Scale } from 'lucide-react';
+import remarkGfm from 'remark-gfm';
+import { User, Bot } from 'lucide-react';
 
 const ChatMessage = ({ message }) => {
-  const isUser = message.role === 'user';
-  
+  const isUser = message.sender === 'user';
+
   return (
-    <div className={`flex items-start gap-6 mb-8 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
-      {/* Avatar */}
-      <div className={`flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${
-        isUser 
-          ? 'bg-gradient-to-br from-legal-600 to-legal-700 text-white' 
-          : 'bg-gradient-to-br from-orange-500 to-red-500 text-white'
-      }`}>
-        {isUser ? <User size={28} /> : <Scale size={28} />}
-      </div>
-      
-      {/* Message Bubble */}
-      <div className={`chat-bubble ${isUser ? 'chat-bubble-user' : 'chat-bubble-assistant'}`}>
-        {isUser ? (
-          <p className="text-xl font-medium leading-relaxed">{message.content}</p>
-        ) : (
-          <div className="prose prose-lg max-w-none">
-            <ReactMarkdown
-              components={{
-                p: ({ children }) => <p className="mb-3 last:mb-0 text-xl leading-relaxed">{children}</p>,
-                strong: ({ children }) => <strong className="font-bold text-legal-900">{children}</strong>,
-                em: ({ children }) => <em className="italic">{children}</em>,
-                ul: ({ children }) => <ul className="list-disc list-inside mb-3 space-y-2">{children}</ul>,
-                ol: ({ children }) => <ol className="list-decimal list-inside mb-3 space-y-2">{children}</ol>,
-                li: ({ children }) => <li className="mb-2 text-xl">{children}</li>,
-              }}
-            >
-              {message.content}
-            </ReactMarkdown>
+    <div className={`flex items-start gap-6 mb-8 ${isUser ? 'justify-end' : 'justify-start'}`}>
+      {!isUser && (
+        <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center flex-shrink-0 shadow-lg">
+          <Bot className="w-8 h-8 text-primary-foreground" />
+        </div>
+      )}
+      <div className={`p-8 flex-1 rounded-2xl break-words shadow-elegant
+        ${isUser ? 'bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-br-none max-w-[70%]' : 'bg-white text-foreground border-2 border-primary/10 rounded-bl-none'}`}>
+        <div className="text-xl leading-relaxed">
+          {isUser ? (
+            <p className="whitespace-pre-wrap font-medium">{message.text}</p>
+          ) : (
+            <div className="prose prose-xl max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {message.text}
+              </ReactMarkdown>
+            </div>
+          )}
+        </div>
+        {message.sources && message.sources.length > 0 && (
+          <div className="mt-5 pt-5 border-t-2 border-primary/20 text-base">
+            <p className="font-bold mb-3 text-primary">📚 Sources:</p>
+            <ul className="list-disc list-inside space-y-2">
+              {message.sources.map((source, index) => (
+                <li key={index}>
+                  <a
+                    href={source.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:text-secondary transition-colors duration-200 font-medium hover:underline"
+                  >
+                    {source.title || `Source ${index + 1}`}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
-        
-        {/* Timestamp */}
-        <div className={`text-xs mt-2 font-medium ${isUser ? 'text-legal-100' : 'text-gray-500'}`}> 
-          {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-        </div>
       </div>
+      {isUser && (
+        <div className="w-16 h-16 rounded-full gradient-accent flex items-center justify-center flex-shrink-0 shadow-lg">
+          <User className="w-8 h-8 text-accent-foreground" />
+        </div>
+      )}
     </div>
   );
 };
 
 export default ChatMessage;
-

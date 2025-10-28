@@ -1,197 +1,352 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Send, AlertCircle, CheckCircle, Scale } from 'lucide-react';
-import Header from './components/Header';
+import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Scale, Send, BookOpen, Shield, FileText, Loader2, ArrowLeft, User, LogOut } from 'lucide-react';
 import ChatMessage from './components/ChatMessage';
 import TypingIndicator from './components/TypingIndicator';
 import SuggestedQuestions from './components/SuggestedQuestions';
-import { chatAPI } from './services/api';
+import Sidebar from './components/Sidebar';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authView, setAuthView] = useState('login'); // 'login' or 'signup'
+  const [conversations, setConversations] = useState([]);
+  const [currentConversationId, setCurrentConversationId] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [conversationId, setConversationId] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
-  const [documentsCount, setDocumentsCount] = useState(0);
-  const [error, setError] = useState(null);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showChat, setShowChat] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Scroll to bottom of messages
+  // Check for existing session on mount
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (currentUser) {
+      setUser(currentUser);
+      setIsAuthenticated(true);
+      
+      // Load conversations for this user
+      loadConversations(currentUser.id);
+    }
+  }, []);
+
+  // Load conversations from localStorage
+  const loadConversations = (userId) => {
+    const allConversations = JSON.parse(localStorage.getItem('conversations') || '[]');
+    const userConversations = allConversations.filter(conv => conv.userId === userId);
+    setConversations(userConversations.sort((a, b) => b.timestamp - a.timestamp));
+  };
+
+  // Save conversation to localStorage
+  const saveConversation = () => {
+    if (!currentConversationId || messages.length === 0) return;
+
+    const allConversations = JSON.parse(localStorage.getItem('conversations') || '[]');
+    const existingIndex = allConversations.findIndex(conv => conv.id === currentConversationId);
+    
+    const conversationData = {
+      id: currentConversationId,
+      userId: user.id,
+      messages: messages,
+      timestamp: Date.now(),
+      title: messages.find(m => m.sender === 'user')?.text.substring(0, 40) || 'New Conversation'
+    };
+
+    if (existingIndex !== -1) {
+      allConversations[existingIndex] = conversationData;
+    } else {
+      allConversations.push(conversationData);
+    }
+
+    localStorage.setItem('conversations', JSON.stringify(allConversations));
+    loadConversations(user.id);
+  };
+
+  // Auto-save conversation when messages change
+  useEffect(() => {
+    if (messages.length > 0 && currentConversationId) {
+      saveConversation();
+    }
+  }, [messages]);
+
+  // Close user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showUserMenu && !event.target.closest('.user-menu-container')) {
+        setShowUserMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showUserMenu]);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading]);
+  }, [messages]);
 
-  // Check health on mount
-  useEffect(() => {
-    const checkHealth = async () => {
-      try {
-        const health = await chatAPI.getHealth();
-        setIsConnected(health.status === 'healthy');
-        setDocumentsCount(health.documents_count || 0);
-        
-        // Add welcome message
-        if (health.vectorstore_loaded) {
-          setMessages([{
-            role: 'assistant',
-            content: `**Welcome! 👋**\n\nI'm your AI Legal Assistant for Indian law. I can help you understand:\n\n• Indian Constitution and fundamental rights\n• Legal procedures and requirements\n• Property and inheritance laws\n• General legal guidance\n\nFeel free to ask me anything! 💬`,
-            timestamp: new Date().toISOString(),
-          }]);
-        } else {
-          setError('Knowledge base not initialized. Please run the scraper first.');
-        }
-      } catch (err) {
-        console.error('Health check failed:', err);
-        setError('Unable to connect to backend. Please ensure the server is running.');
-      }
-    };
+  const handleSendMessage = async (text = input) => {
+    if (!text.trim()) return;
 
-    checkHealth();
-  }, []);
-
-  const handleSendMessage = async (messageText = null) => {
-    const text = messageText || inputMessage.trim();
-    if (!text) return;
-
-    // Clear error
-    setError(null);
-
-    // Add user message
-    const userMessage = {
-      role: 'user',
-      content: text,
-      timestamp: new Date().toISOString(),
-    };
-    
-    setMessages(prev => [...prev, userMessage]);
-    setInputMessage('');
-    setIsLoading(true);
+    const userMessage = { sender: 'user', text: text };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setInput('');
+    setLoading(true);
 
     try {
-      // Send to API
-      const response = await chatAPI.sendMessage(text, conversationId);
-      
-      // Update conversation ID
-      if (!conversationId) {
-        setConversationId(response.conversation_id);
-      }
-
-      // Add assistant message
-      const assistantMessage = {
-        role: 'assistant',
-        content: response.response,
-        timestamp: new Date().toISOString(),
-        sources: response.sources,
-      };
-      
-      setMessages(prev => [...prev, assistantMessage]);
-    } catch (err) {
-      console.error('Error sending message:', err);
-      setError('Failed to get response. Please try again.');
-      
-      // Add error message
-      const errorMessage = {
-        role: 'assistant',
-        content: '❌ I apologize, but I encountered an error processing your request. Please try again.',
-        timestamp: new Date().toISOString(),
-      };
-      setMessages(prev => [...prev, errorMessage]);
+      const response = await axios.post('http://localhost:8000/api/chat', { message: text });
+      const botMessage = { sender: 'bot', text: response.data.response, sources: response.data.sources };
+      setMessages((prevMessages) => [...prevMessages, botMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: 'bot', text: 'Sorry, I am having trouble connecting to the server. Please try again later.' },
+      ]);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
+  const handleSuggestedQuestionClick = (question) => {
+    // Create new conversation if none exists
+    if (!currentConversationId) {
+      const newConvId = `conv_${Date.now()}`;
+      setCurrentConversationId(newConvId);
+    }
+    setShowChat(true);
+    // Wait for next tick to ensure chat is shown
+    setTimeout(() => handleSendMessage(question), 100);
+  };
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    setIsAuthenticated(true);
+    localStorage.setItem('currentUser', JSON.stringify(userData));
+    loadConversations(userData.id);
+  };
+
+  const handleSignupSuccess = (userData) => {
+    setUser(userData);
+    setIsAuthenticated(true);
+    localStorage.setItem('currentUser', JSON.stringify(userData));
+    loadConversations(userData.id);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setIsAuthenticated(false);
+    setShowChat(false);
+    setMessages([]);
+    setConversations([]);
+    setCurrentConversationId(null);
+    localStorage.removeItem('currentUser');
+    setShowUserMenu(false);
+  };
+
+  const handleNewChat = () => {
+    const newConvId = `conv_${Date.now()}`;
+    setCurrentConversationId(newConvId);
+    setMessages([]);
+    setShowChat(true);
+  };
+
+  const handleSelectConversation = (convId) => {
+    const allConversations = JSON.parse(localStorage.getItem('conversations') || '[]');
+    const conversation = allConversations.find(conv => conv.id === convId);
+    
+    if (conversation) {
+      setCurrentConversationId(convId);
+      setMessages(conversation.messages || []);
+      setShowChat(true);
     }
   };
 
-  return (
-    <div className="h-screen flex flex-col overflow-hidden">
-      {/* Fixed Header at Top - Always Visible */}
-      <div className="flex-shrink-0">
-        <Header isConnected={isConnected} documentsCount={documentsCount} />
-      </div>
+  const handleDeleteConversation = (convId) => {
+    const allConversations = JSON.parse(localStorage.getItem('conversations') || '[]');
+    const filteredConversations = allConversations.filter(conv => conv.id !== convId);
+    localStorage.setItem('conversations', JSON.stringify(filteredConversations));
+    
+    loadConversations(user.id);
+    
+    // If deleting current conversation, create a new one
+    if (convId === currentConversationId) {
+      handleNewChat();
+    }
+  };
 
-      {/* Scrollable Content Area - Only this part scrolls */}
-      <div className="flex-1 overflow-y-auto bg-gray-50">
-        <div className="w-full px-12 py-4">
-          {/* Error Banner */}
-          {error && (
-            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-              <AlertCircle className="text-red-600 flex-shrink-0 mt-0.5" size={20} />
-              <div>
-                <p className="text-red-800 font-medium">Error</p>
-                <p className="text-red-600 text-sm">{error}</p>
-              </div>
+  // Show login/signup if not authenticated
+  if (!isAuthenticated) {
+    if (authView === 'login') {
+      return <Login onLoginSuccess={handleLoginSuccess} onSwitchToSignup={() => setAuthView('signup')} />;
+    } else {
+      return <Signup onSignupSuccess={handleSignupSuccess} onSwitchToLogin={() => setAuthView('login')} />;
+    }
+  }
+
+  if (!showChat) {
+    return (
+      <div className="min-h-screen gradient-subtle flex items-center justify-center px-4 py-12 relative">
+        {/* User Menu Button - Top Right */}
+        <div className="absolute top-6 right-6 user-menu-container">
+          <button
+            onClick={() => setShowUserMenu(!showUserMenu)}
+            className="flex items-center gap-3 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-elegant hover:shadow-glow transition-smooth border-2 border-primary/20 hover:border-primary/40"
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+              <User className="w-5 h-5 text-white" />
+            </div>
+            <div className="text-left">
+              <p className="font-bold text-primary text-sm">{user?.username}</p>
+              <p className="text-xs text-muted-foreground">{user?.email}</p>
+            </div>
+          </button>
+          {showUserMenu && (
+            <div className="absolute top-full right-0 mt-2 bg-white rounded-xl shadow-elegant border-2 border-primary/20 py-2 min-w-[200px] z-50">
+              <button
+                onClick={handleLogout}
+                className="w-full px-4 py-3 text-left hover:bg-primary/10 transition-smooth flex items-center gap-3 text-foreground font-medium"
+              >
+                <LogOut className="w-5 h-5 text-destructive" />
+                <span>Logout</span>
+              </button>
             </div>
           )}
-
-          {/* Compact Welcome Message */}
-          {messages.length === 0 && !isLoading && (
-            <div className="text-center py-4">
-              <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-legal-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                <Scale size={32} className="text-white" />
-              </div>
-              <h2 className="text-4xl font-bold text-gray-800 mb-3">
-                How can I help you today?
-              </h2>
-              <p className="text-xl text-gray-600 mb-3">
-                Ask me anything about Indian law 📚
-              </p>
-              
-              {/* Suggested Questions - Compact */}
-              <div className="mt-2">
-                <SuggestedQuestions onSelect={handleSendMessage} />
-              </div>
-            </div>
-          )}
-
-          {/* Messages */}
-          {messages.map((message, index) => (
-            <ChatMessage key={index} message={message} />
-          ))}
-          
-          {/* Loading Indicator */}
-          {isLoading && <TypingIndicator />}
-          
-          {/* Auto-scroll anchor */}
-          <div ref={messagesEndRef} />
         </div>
-      </div>
 
-      {/* Fixed Input at Bottom - Always Visible */}
-      <div className="flex-shrink-0 border-t-2 border-gray-200 bg-white shadow-2xl">
-        <div className="w-full px-12 py-5">
-          <div className="flex gap-4 items-end">
-            <textarea
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Type your legal question here... 💬"
-              className="flex-1 resize-none border-2 border-gray-300 rounded-2xl px-6 py-4 text-xl focus:outline-none focus:ring-2 focus:ring-legal-500 focus:border-legal-500 max-h-40 transition-all shadow-md"
-              rows="2"
-              style={{ minHeight: '70px', fontSize: '1.25rem' }}
-            />
+        <div className="max-w-6xl w-full">
+          <div className="text-center mb-12 space-y-6 animate-fade-in">
+            <div className="inline-block gradient-primary px-12 py-5 rounded-full mb-8 shadow-elegant hover:shadow-glow transition-smooth">
+              <span className="text-primary-foreground font-extrabold text-4xl md:text-5xl">
+                ⚖️ AI-Powered Legal Assistant
+              </span>
+            </div>
+            <h1 className="text-7xl md:text-9xl font-extrabold mb-10 text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text animate-gradient font-serif leading-tight">
+              Your Guide to Indian Law
+            </h1>
+            <p className="text-3xl md:text-4xl text-foreground/80 max-w-4xl mx-auto mb-12 font-sans leading-relaxed font-medium">
+              Get instant, accurate answers to your legal questions
+            </p>
             <button
-              onClick={() => handleSendMessage()}
-              disabled={!inputMessage.trim() || isLoading}
-              className="bg-gradient-to-r from-legal-600 to-legal-700 text-white px-8 py-4 rounded-2xl hover:from-legal-700 hover:to-legal-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center gap-3 font-semibold text-lg shadow-lg hover:shadow-xl"
+              className="gradient-accent hover:scale-105 hover:shadow-glow transition-all duration-300 text-2xl px-12 py-8 rounded-2xl shadow-elegant font-bold text-accent-foreground"
+              onClick={handleNewChat}
             >
-              <Send size={24} />
-              <span>Send</span>
+              Start Your Legal Consultation →
             </button>
           </div>
-          
-          <div className="mt-2 text-center">
-            <p className="text-xs text-gray-500">
-              Press <kbd className="px-1.5 py-0.5 bg-gray-100 rounded font-mono text-xs">Enter</kbd> to send • 🇮🇳 Made for India
-            </p>
+
+          <div className="grid md:grid-cols-3 gap-8 mt-20">
+            <div className="p-8 bg-white/80 backdrop-blur-sm border-2 border-primary/20 rounded-2xl hover:shadow-elegant hover:scale-105 hover:border-primary/40 transition-all duration-300">
+              <div className="gradient-primary w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md">
+                <BookOpen className="w-8 h-8 text-primary-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-primary font-serif">Comprehensive Coverage</h3>
+              <p className="text-foreground/70 font-sans text-lg leading-relaxed">Access a vast knowledge base of Indian laws and legal precedents.</p>
+            </div>
+            <div className="p-8 bg-white/80 backdrop-blur-sm border-2 border-secondary/20 rounded-2xl hover:shadow-elegant hover:scale-105 hover:border-secondary/40 transition-all duration-300">
+              <div className="gradient-primary w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md">
+                <Shield className="w-8 h-8 text-primary-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-secondary font-serif">Know Your Rights</h3>
+              <p className="text-foreground/70 font-sans text-lg leading-relaxed">Understand your legal rights and obligations in various situations.</p>
+            </div>
+            <div className="p-8 bg-white/80 backdrop-blur-sm border-2 border-accent/20 rounded-2xl hover:shadow-elegant hover:scale-105 hover:border-accent/40 transition-all duration-300">
+              <div className="gradient-accent w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md">
+                <FileText className="w-8 h-8 text-accent-foreground" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-primary font-serif">Clear Guidance</h3>
+              <p className="text-foreground/70 font-sans text-lg leading-relaxed">Receive easy-to-understand explanations of complex legal terms.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex h-screen bg-background font-sans overflow-hidden">
+      {/* Sidebar */}
+      <Sidebar
+        user={user}
+        onLogout={handleLogout}
+        conversations={conversations}
+        currentConversationId={currentConversationId}
+        onSelectConversation={handleSelectConversation}
+        onNewChat={handleNewChat}
+        onDeleteConversation={handleDeleteConversation}
+      />
+
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-primary via-secondary to-primary backdrop-blur-md border-b-4 border-accent shadow-elegant">
+          <div className="px-8 py-6 flex items-center gap-6">
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <Scale className="w-9 h-9 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-primary-foreground font-serif">⚖️ Legal AI Assistant</h2>
+              <p className="text-base text-primary-foreground/90 font-medium mt-1">Powered by Advanced AI Knowledge Base</p>
+            </div>
+          </div>
+        </header>
+
+        {/* Messages Area */}
+        <main className="flex-1 overflow-y-auto px-8 py-6 pb-40">
+          <div className="max-w-5xl mx-auto">
+            <div className="space-y-6">
+              {messages.length === 0 && (
+                <div className="text-center text-muted-foreground text-xl py-12">
+                  <p className="mb-8 text-3xl font-semibold text-foreground">
+                    Welcome, <span className="text-primary font-bold">{user?.username}</span>! How can I assist you with Indian law today?
+                  </p>
+                  <SuggestedQuestions onQuestionClick={handleSuggestedQuestionClick} />
+                </div>
+              )}
+              {messages.map((message, index) => (
+                <ChatMessage key={index} message={message} />
+              ))}
+              {loading && <TypingIndicator />}
+              <div ref={messagesEndRef} className="h-8" />
+            </div>
+          </div>
+        </main>
+
+        {/* Input Area */}
+        <div className="fixed bottom-0 left-80 right-0 bg-card/95 backdrop-blur-md border-t-2 border-primary/30 shadow-elegant">
+          <div className="px-8 py-5">
+            <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }} className="max-w-5xl mx-auto flex gap-4">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask your legal question..."
+                className="flex-1 bg-input text-foreground border-2 border-primary/20 rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary h-16 text-lg shadow-sm"
+                disabled={loading}
+              />
+              <button
+                type="submit"
+                className="gradient-accent hover:scale-105 transition-all duration-300 px-8 py-4 rounded-xl shadow-glow h-16 flex items-center justify-center font-semibold"
+                disabled={loading}
+              >
+                {loading ? (
+                  <Loader2 className="h-7 w-7 animate-spin text-accent-foreground" />
+                ) : (
+                  <Send className="h-7 w-7 text-accent-foreground" />
+                )}
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -200,4 +355,3 @@ function App() {
 }
 
 export default App;
-
