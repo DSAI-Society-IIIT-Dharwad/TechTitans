@@ -1,0 +1,26 @@
+# Core Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+
+# Web Scraping
+beautifulsoup4==4.12.3
+requests==2.31.0
+lxml
+
+# LangChain and AI (simplified versions)
+langchain
+langchain-community
+langchain-core
+
+# Vector Database
+chromadb
+
+# Embeddings
+sentence-transformers
+
+# CORS
+python-dotenv==1.0.0
+
+# Markdown Processing
+markdown==3.5.2
