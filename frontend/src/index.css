@@ -3,46 +3,50 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Professional & Clean - Light Mode */
-    --background: 210 17% 98%; /* Soft white with hint of blue */
-    --foreground: 215 25% 27%; /* Professional dark gray-blue */
-    
-    --card: 0 0% 100%; /* Pure white */
-    --card-foreground: 215 25% 27%;
-    
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
-    
-    --primary: 221 83% 53%; /* Professional blue */
-    --primary-foreground: 0 0% 100%;
-    
-    --secondary: 210 17% 95%; /* Very light blue-gray */
-    --secondary-foreground: 215 25% 27%;
-    
-    --muted: 210 17% 95%;
-    --muted-foreground: 215 16% 47%;
-    
-    --accent: 199 89% 48%; /* Clean cyan */
-    --accent-foreground: 0 0% 100%;
-    
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    
-    --border: 214 32% 91%; /* Subtle border */
-    --input: 210 17% 98%;
-    --ring: 221 83% 53%;
-    
-    --radius: 0.75rem;
-    
-    /* Professional Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(199 89% 48%));
-    --gradient-accent: linear-gradient(135deg, hsl(199 89% 48%), hsl(185 85% 45%));
-    --gradient-subtle: linear-gradient(180deg, hsl(210 17% 98%), hsl(214 32% 97%));
-    
-    /* Smooth Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+:root {
+  /* Clean Professional Light Theme */
+  --background: 0 0% 100%; /* Pure white */
+  --foreground: 0 0% 9%; /* Almost black text #171717 */
+  
+  --card: 0 0% 98%; /* Very light gray #fafafa */
+  --card-foreground: 0 0% 9%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 9%;
+  
+  --primary: 221 83% 53%; /* Professional blue #2563eb */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 0 0% 96%; /* Light gray #f5f5f5 */
+  --secondary-foreground: 0 0% 9%;
+  
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  
+  --accent: 221 83% 53%; /* Professional blue */
+  --accent-foreground: 0 0% 100%;
+  
+  --success: 142 76% 36%;
+  --warning: 38 92% 50%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --border: 0 0% 90%; /* Subtle border #e5e5e5 */
+  --input: 0 0% 100%; /* White input */
+  --ring: 221 83% 53%;
+  
+  --radius: 0.75rem;
+  
+  /* Clean Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(221 83% 63%));
+  --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+  --gradient-card: linear-gradient(135deg, hsl(0 0% 99%), hsl(0 0% 97%));
+  
+  /* Smooth Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
   
   .dark {
     --background: 240 45% 8%;
@@ -103,22 +107,30 @@
     transition: var(--transition-smooth);
   }
   
-  .shadow-elegant {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-  
-  .shadow-glow {
-    box-shadow: 0 0 25px hsla(221, 83%, 53%, 0.15), 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
+.shadow-elegant {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* Scrollbar styling */
+.shadow-glow {
+  box-shadow: 0 0 30px hsla(221, 83%, 53%, 0.15), 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-card {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-card-hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+}
+
+/* Scrollbar styling - Light theme */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: hsl(var(--muted));
+  background-color: hsl(var(--secondary));
 }
 
 ::-webkit-scrollbar-thumb {
@@ -127,12 +139,12 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--primary) / 0.3);
+  background-color: hsl(var(--primary) / 0.4);
 }
 
-/* Markdown Styling - Desktop Full Width */
+/* Markdown Styling - Clean Professional Theme */
 .prose {
-  color: inherit;
+  color: hsl(var(--foreground));
   max-width: none;
 }
 
@@ -140,31 +152,32 @@
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
   line-height: 1.9;
+  color: hsl(var(--foreground));
 }
 
-/* Main Headings with Large Fonts */
+/* Main Headings with Large Fonts - Professional */
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
   font-weight: 800;
   margin-top: 2.5rem;
   margin-bottom: 1.5rem;
-  color: hsl(var(--primary));
+  color: hsl(var(--foreground));
   font-family: 'Playfair Display', Georgia, serif;
   line-height: 1.3;
   letter-spacing: -0.02em;
 }
 
-/* Extra Large Main Headings */
+/* Extra Large Main Headings - Clean */
 .prose h1 { 
   font-size: 3rem; 
   margin-top: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 3px solid hsl(var(--primary));
+  border-bottom: 3px solid hsl(var(--border));
 }
 
 .prose h2 { 
   font-size: 2.5rem; 
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid hsl(var(--primary) / 0.5);
+  border-bottom: 2px solid hsl(var(--border));
 }
 
 .prose h3 { 
@@ -183,11 +196,11 @@
   font-size: 1.25rem; 
 }
 
-/* First heading in response gets special treatment */
+/* First heading in response gets special treatment - Professional gradient */
 .prose > h1:first-child,
 .prose > h2:first-child {
   margin-top: 0;
-  background: linear-gradient(135deg, hsl(220 90% 52%), hsl(265 85% 58%));
+  background: linear-gradient(135deg, hsl(221 83% 53%), hsl(221 83% 43%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -212,6 +225,7 @@
   font-size: 1.25rem;
   line-height: 1.8;
   padding-left: 0.5rem;
+  color: hsl(var(--foreground));
 }
 
 .prose li::marker {
@@ -221,17 +235,17 @@
 
 .prose strong {
   font-weight: 800;
-  color: hsl(var(--primary));
+  color: hsl(var(--foreground));
   font-size: 1.05em;
 }
 
 .prose em {
   font-style: italic;
-  color: hsl(var(--secondary));
+  color: hsl(var(--muted-foreground));
 }
 
 .prose code {
-  background-color: hsl(var(--muted));
+  background-color: hsl(var(--secondary));
   color: hsl(var(--primary));
   padding: 0.3rem 0.6rem;
   border-radius: 0.5rem;
@@ -241,7 +255,7 @@
 }
 
 .prose pre {
-  background-color: hsl(var(--muted));
+  background-color: hsl(var(--secondary));
   padding: 1.5rem;
   border-radius: 0.75rem;
   overflow-x: auto;
@@ -254,6 +268,7 @@
   padding: 0;
   border: none;
   font-size: 1rem;
+  color: hsl(var(--foreground));
 }
 
 .prose blockquote {

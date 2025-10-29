@@ -7,14 +7,14 @@ const ChatMessage = ({ message }) => {
   const isUser = message.sender === 'user';
 
   return (
-    <div className={`flex items-start gap-6 mb-8 ${isUser ? 'justify-end' : 'justify-start'}`}>
+    <div className={`flex items-start gap-6 mb-8 animate-fade-in-up ${isUser ? 'justify-end' : 'justify-start'}`}>
       {!isUser && (
-        <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center flex-shrink-0 shadow-lg">
-          <Bot className="w-8 h-8 text-primary-foreground" />
+        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center flex-shrink-0 shadow-glow animate-scale-in">
+          <Bot className="w-8 h-8 text-white" />
         </div>
       )}
-      <div className={`p-8 flex-1 rounded-2xl break-words shadow-elegant
-        ${isUser ? 'bg-gradient-to-br from-primary to-accent text-primary-foreground rounded-br-none max-w-[70%]' : 'bg-card text-card-foreground border border-border rounded-bl-none'}`}>
+      <div className={`p-8 flex-1 rounded-3xl break-words transition-all duration-300 hover:shadow-card-hover
+        ${isUser ? 'bg-gradient-to-br from-primary to-blue-500 text-white rounded-br-none max-w-[70%] shadow-glow animate-slide-in-right' : 'bg-white text-foreground border border-border shadow-card rounded-bl-none animate-slide-in-left'}`}>
         <div className="text-xl leading-relaxed">
           {isUser ? (
             <p className="whitespace-pre-wrap font-medium">{message.text}</p>
@@ -27,16 +27,16 @@ const ChatMessage = ({ message }) => {
           )}
         </div>
         {message.sources && message.sources.length > 0 && (
-          <div className="mt-5 pt-5 border-t-2 border-primary/20 text-base">
+          <div className="mt-5 pt-5 border-t-2 border-border text-base">
             <p className="font-bold mb-3 text-primary">📚 Sources:</p>
             <ul className="list-disc list-inside space-y-2">
               {message.sources.map((source, index) => (
-                <li key={index}>
+                <li key={index} className="text-foreground">
                   <a
                     href={source.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-accent hover:text-secondary transition-colors duration-200 font-medium hover:underline"
+                    className="text-primary hover:text-primary/80 transition-colors duration-200 font-medium hover:underline"
                   >
                     {source.title || `Source ${index + 1}`}
                   </a>
@@ -47,8 +47,8 @@ const ChatMessage = ({ message }) => {
         )}
       </div>
       {isUser && (
-        <div className="w-16 h-16 rounded-full gradient-accent flex items-center justify-center flex-shrink-0 shadow-lg">
-          <User className="w-8 h-8 text-accent-foreground" />
+        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center flex-shrink-0 shadow-glow animate-scale-in">
+          <User className="w-8 h-8 text-white" />
         </div>
       )}
     </div>

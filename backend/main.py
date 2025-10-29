@@ -4,7 +4,16 @@ Main application entry point
 """
 
 import sys
+import os
 from pathlib import Path
+
+# Fix Windows console encoding for emojis
+if sys.platform == "win32":
+    os.environ["PYTHONIOENCODING"] = "utf-8"
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except:
+        pass
 
 # Add project root to Python path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -24,10 +33,10 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Configure CORS
+# Configure CORS - Allow all localhost ports for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],  # React default ports
+    allow_origins=["http://localhost:3000", "http://localhost:3001", "http://localhost:3002", "http://localhost:5173", "http://localhost:5174"],  # All common dev ports
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,7 +50,7 @@ app.include_router(router, prefix="/api", tags=["chatbot"])
 async def root():
     """Root endpoint"""
     return {
-        "message": "🏛️ AI Legal Chatbot API",
+        "message": "AI Legal Chatbot API",
         "version": "2.0.0",
         "method": "Pattern Matching (Manual Curation)",
         "data_source": "Official Indian Acts",

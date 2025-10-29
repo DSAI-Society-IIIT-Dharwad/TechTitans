@@ -2682,9 +2682,270 @@ A person who:
     
     # GENERAL LEGAL INFORMATION - Entry 9
     {
-        "keywords": ["legal", "lawyer", "advocate", "court", "case", "lawsuit", "litigation", "legal advice", "procedure"],
+        "keywords": ["legal", "lawyer", "advocate", "court", "case", "lawsuit", "litigation", "legal advice", "procedure", "represent myself", "without lawyer", "self representation", "no lawyer", "can i represent", "represent own case", "fight own case", "no advocate"],
         "category": "General Legal Information",
         "response": """# General Legal Information - Courts, Procedures & Legal Aid
+
+## ✅ Right to Self-Representation (Fight Your Own Case)
+
+### **YES, You Can Represent Yourself in Court!**
+
+**Legal Basis:**
+- **Article 19(1)(a)** of Indian Constitution - Freedom of Speech & Expression
+- **Code of Civil Procedure (CPC)** - Order III, Rule 1
+- **Criminal Procedure Code (CrPC)** - Section 303
+- **Right to defend yourself** - Recognized by Supreme Court
+
+### **What Indian Law Says:**
+
+✅ **Civil Cases (CPC Order III, Rule 1):**
+- "Any person may appear before the court either in person or by a recognized agent"
+- You have **full right** to represent yourself
+- No lawyer required
+
+✅ **Criminal Cases (CrPC Section 303):**
+- "Accused can defend himself in person"
+- Or take a lawyer (pleader)
+- Your choice
+
+### **Supreme Court Ruling:**
+**Jamshed Ansari v. State of U.P. (2008)**
+- Court upheld right to self-representation
+- Part of **natural justice**
+- Cannot be denied
+
+---
+
+## 🎯 When Self-Representation Works Well:
+
+### **✅ GOOD for:**
+1. **Consumer Complaints** (Consumer Forum)
+   - Simple format
+   - No complicated procedures
+   - Consumer forums are user-friendly
+
+2. **Traffic Challans / Fines**
+   - Straightforward
+   - Magistrate courts
+
+3. **Small Civil Claims** (up to ₹5-10 lakh)
+   - Simple money recovery
+   - Rent disputes (small amounts)
+
+4. **RTI Applications**
+   - Not really "court" but legal process
+   - Very simple
+
+5. **Bail Applications** (Simple cases)
+   - If offence is bailable
+   - Clear grounds
+
+6. **Property Tax / Municipal Disputes**
+   - Simple administrative matters
+
+7. **Cheque Bounce Complaints** (Negotiable Instruments Act)
+   - Section 138 NI Act
+   - Procedure is standard
+   - Many do it themselves
+
+---
+
+## ⚠️ When You SHOULD Hire a Lawyer:
+
+### **❌ NOT RECOMMENDED for:**
+1. **Serious Criminal Cases**
+   - Murder, rape, kidnapping
+   - Sentences: Life imprisonment, death
+   - ⚠️ **Too risky** - Your life/freedom at stake
+
+2. **Property Disputes (High value)**
+   - Property worth >₹10 lakh
+   - Complex title issues
+   - Multiple parties
+
+3. **Company/Business Litigation**
+   - NCLT, NCLAT matters
+   - Company law is technical
+   - Requires expertise
+
+4. **High-Value Civil Cases** (>₹10 lakh)
+   - Complex evidence
+   - Legal technicalities
+   - Professional representation needed
+
+5. **Divorce with Contested Property**
+   - High-stakes
+   - Alimony, child custody
+   - Emotional + Legal
+
+6. **Tax Disputes** (Above ₹5 lakh)
+   - IT Department, GST
+   - Technical knowledge required
+
+7. **Constitutional Matters**
+   - Writ petitions in High Court/Supreme Court
+   - Requires senior advocates
+
+---
+
+## 📋 How to Represent Yourself (Step-by-Step):
+
+### **Civil Case:**
+1. **Draft Your Plaint/Petition**
+   - Use plain language
+   - State facts clearly
+   - Mention relief you want
+   - Format available online
+
+2. **File in Court**
+   - Pay court fees
+   - Submit documents
+   - Get case number
+
+3. **Attend Hearings**
+   - Be punctual
+   - Dress formally
+   - Address judge as "Your Honour"
+   - Speak only when asked
+
+4. **Present Evidence**
+   - Organize documents
+   - Get witnesses (if needed)
+   - Cross-examine opponent's witnesses
+
+5. **Make Arguments**
+   - Stick to facts
+   - Cite relevant laws (if you know)
+   - Be respectful
+
+### **Criminal Case (Accused):**
+1. **Understand Charges**
+   - Know what you're accused of
+   - Read chargesheet carefully
+
+2. **Prepare Defense**
+   - Collect evidence
+   - Identify witnesses
+
+3. **Cross-Examine Prosecution**
+   - Ask questions to prosecution witnesses
+   - Point out inconsistencies
+
+4. **Present Your Case**
+   - Call defense witnesses
+   - Submit documents
+
+5. **Final Arguments**
+   - Summarize your defense
+   - Point out weaknesses in prosecution
+
+---
+
+## 💡 Tips for Self-Representation:
+
+### **DO's:**
+✅ **Study the law** - Read bare acts, online resources
+✅ **Visit court beforehand** - Understand procedure
+✅ **Be prepared** - All documents organized
+✅ **Be respectful** - To judge, opposing party, court staff
+✅ **Dress formally** - Court is formal place
+✅ **Take notes** - During hearings
+✅ **Ask for clarification** - If you don't understand
+✅ **Use precedents** - Cite similar cases (if you can)
+
+### **DON'Ts:**
+❌ **Don't argue** - With judge
+❌ **Don't interrupt** - Wait your turn
+❌ **Don't lie** - Perjury is crime
+❌ **Don't be emotional** - Stick to facts
+❌ **Don't ignore notices** - Always respond
+❌ **Don't miss dates** - Be punctual
+❌ **Don't be overconfident** - Law is complex
+
+---
+
+## 🆘 Alternatives to Hiring Expensive Lawyers:
+
+### **1. Legal Aid (FREE)**
+- **Who qualifies:** Income <₹5 lakh/year, SC/ST, women, disabled
+- **Contact:** District Legal Services Authority (DLSA)
+- **Helpline:** 15100 (NALSA)
+
+### **2. Law Student Interns** (Cheap)
+- Law colleges often have clinics
+- Students work under professor supervision
+- Very low cost (₹500-2000)
+
+### **3. Junior Lawyers** (Affordable)
+- Fresh advocates (1-3 years practice)
+- ₹5,000-15,000 per case
+- Good for simple cases
+
+### **4. Consultation Only** (Budget Option)
+- Pay lawyer for advice (₹2000-5000)
+- Draft your own documents
+- Lawyer guides you
+- Fight case yourself
+
+### **5. Pro Bono Lawyers**
+- Some senior lawyers do free cases
+- For public interest matters
+- Contact Bar Association
+
+---
+
+## 📚 Resources to Learn:
+
+**Free Online:**
+- India Code (https://www.indiacode.nic.in/) - All laws
+- District Court websites - Procedures, forms
+- YouTube - Legal procedures explained
+- Bar Council websites - Guidelines
+
+**Books:**
+- "Practical Guide to Court Procedures" (₹300-500)
+- Bare Acts (available free online)
+
+**Consult Once:**
+- Even if fighting yourself, **one consultation** helps
+- Clarify legal position
+- ₹1000-3000 for consultation
+
+---
+
+## ⚖️ Final Verdict:
+
+| Case Type | Self-Representation |
+|-----------|---------------------|
+| Consumer Complaint | ✅ **HIGHLY RECOMMENDED** |
+| Traffic Challan | ✅ **RECOMMENDED** |
+| Simple Civil (< ₹5L) | ✅ **DOABLE** |
+| Cheque Bounce | ✅ **DOABLE** (many do it) |
+| Bail (simple) | ⚠️ **POSSIBLE** but lawyer better |
+| Divorce (uncontested) | ⚠️ **RISKY** but doable |
+| Property (< ₹10L) | ⚠️ **DIFFICULT** but possible |
+| Criminal (serious) | ❌ **NOT RECOMMENDED** |
+| High-value civil | ❌ **HIRE LAWYER** |
+| Company/Tax | ❌ **HIRE EXPERT** |
+
+---
+
+## 🌟 Success Stories:
+
+Many people have successfully represented themselves in:
+- Consumer forums (very common)
+- Traffic violations
+- Small rent disputes
+- Cheque bounce cases
+- Simple recovery suits
+
+**However:** Success requires:
+- Preparation
+- Patience
+- Basic legal knowledge
+- Confidence
+
+---
 
 ## Indian Court System (4 Levels)
 
@@ -7230,6 +7491,11 @@ def extract_query_context(query):
         # ============ AGRICULTURE LAW ============
         'crop_insurance': ['crop insurance', 'kisan', 'farmer', 'agricultural', 'fasal bima', 'pmfby', 'crop damage', 'crop loss', 'farmer insurance', 'agricultural insurance', 'kisan credit card', 'farmer loan', 'krishi loan', 'crop insurance claim'],
         'land_acquisition': ['land acquisition', 'government land', 'compensation', 'land acquired', 'land taken by government', 'acquisition compensation', 'land acquisition act', 'land compensation', 'eminent domain', 'compulsory acquisition', 'land acquisition case', 'adequate compensation', 'land acquisition procedure'],
+        
+        # ============ GENERAL LEGAL INFORMATION ============
+        'self_representation': ['represent myself', 'without lawyer', 'no lawyer', 'self representation', 'represent own case', 'fight own case', 'can i represent', 'do i need lawyer', 'represent self', 'without advocate', 'no advocate', 'fight case myself', 'handle case myself', 'pro se', 'in person representation', 'self represent', 'myself in court'],
+        'legal_procedure': ['file case', 'case procedure', 'court procedure', 'legal procedure', 'how to file', 'court process', 'legal process', 'case process', 'filing procedure', 'court filing', 'legal system', 'court system'],
+        'legal_aid': ['legal aid', 'free lawyer', 'free legal', 'nalsa', 'dlsa', 'legal services authority', 'free legal services', 'pro bono', 'government lawyer free'],
     }
     
     # Detect all matching contexts
@@ -7515,7 +7781,18 @@ def calculate_contextual_score(query, entry, query_words, all_search_terms):
         else:
             score = base_score
     
-    # ============ GENERAL/GREETING ============
+    # ============ GENERAL LEGAL INFORMATION ============
+    elif 'general legal' in category_lower:
+        if 'self_representation' in query_contexts:
+            score = base_score * 2.5  # STRONG BOOST for self-representation
+        elif 'legal_aid' in query_contexts:
+            score = base_score * 2.3  # BOOST for legal aid
+        elif 'legal_procedure' in query_contexts:
+            score = base_score * 2.2  # BOOST for procedures
+        else:
+            score = base_score
+    
+    # ============ GREETING ============
     else:
         score = base_score
     
@@ -7621,8 +7898,12 @@ def detect_query_intent(query):
     """
     query_lower = query.lower()
     
+    # SELF-REPRESENTATION queries (CAN I / DO I NEED LAWYER)
+    if any(word in query_lower for word in ['represent myself', 'without lawyer', 'no lawyer', 'self representation', 'can i represent', 'do i need lawyer', 'need advocate', 'without advocate', 'fight own case', 'handle own case']):
+        return 'self_representation', ['Right to Self-Representation', 'YES, You Can', 'Self-Representation', 'When Self-Representation Works', 'When You SHOULD Hire']
+    
     # CONSEQUENCE QUERIES - "what will happen", "what happens" (HIGHEST PRIORITY)
-    if any(word in query_lower for word in ['what will happen', 'what happens', 'what would happen', 'consequence']):
+    elif any(word in query_lower for word in ['what will happen', 'what happens', 'what would happen', 'consequence']):
         # Check if asking about mutual consent / both want
         if any(word in query_lower for word in ['both', 'mutual', 'agree', 'consent', 'both want', 'interested']):
             return 'procedure', ['Procedure', 'Process', 'Mutual Consent', 'Steps']
@@ -7635,6 +7916,11 @@ def detect_query_intent(query):
     # PROPERTY DISPUTE queries - illegal occupation, encroachment, get back land
     elif any(word in query_lower for word in ['illegal occupation', 'illegally occupied', 'encroachment', 'trespassing', 'get back my land', 'get back my property', 'someone occupied', 'kabza', 'possession dispute', 'title dispute', 'boundary dispute', 'unauthorized possession', 'forceful possession']):
         return 'dispute', ['Dispute', 'Illegal Occupation', 'Encroachment', 'Possession', 'Civil Suit', 'Remedies']
+    
+    # INHERITANCE & SUCCESSION specific scenarios - HIGH PRIORITY
+    elif any(word in query_lower for word in ['succession certificate', 'joint succession', 'adopted child', 'adoption rights', 'legal heir certificate', 'noc refusal', 'noc not given', 'missing will', 'handwritten will', 'ancestral land', 'stepchildren', 'widow rights', 'digital assets', 'online investments', 'joint ownership', 'co-owner', 'forged documents', 'mutation delay', 'daughter rights', 'electricity bill property', 'utility bill ownership']):
+        # Return as definition so it uses inheritance scenario extraction
+        return 'definition', ['Inheritance', 'Succession', 'Scenario', query_lower]
     
     # NOT PAID queries (salary, refund, etc) - HIGH PRIORITY
     elif any(word in query_lower for word in ['not paid', 'payment not received', 'not paying', 'payment pending', 'pending payment', 'dues not paid', 'withheld', 'pending dues', 'salary not paid']):
@@ -7714,8 +8000,47 @@ def extract_relevant_section(response_text, intent, priority_keywords):
             title_added = True
             break
     
+    # For SELF-REPRESENTATION intent - extract self-representation sections
+    if intent == 'self_representation':
+        in_relevant_section = False
+        lines_collected = 0
+        
+        for i, line in enumerate(lines):
+            stripped = line.strip()
+            
+            # Skip title (already added)
+            if stripped.startswith('# '):
+                continue
+            
+            # Detect self-representation section headers
+            is_self_rep_header = False
+            if stripped.startswith('###') or stripped.startswith('##'):
+                header_lower = stripped.lower()
+                if any(kw in header_lower for kw in ['self-representation', 'represent yourself', 'yes, you can', 'right to self', 'when self-representation', 'without lawyer', 'when you should hire', 'how to represent']):
+                    is_self_rep_header = True
+            
+            # Start collecting from self-representation section
+            if is_self_rep_header:
+                in_relevant_section = True
+                lines_collected = 0
+                result_lines.append(line)
+                continue
+            
+            # Collect lines within self-representation section
+            if in_relevant_section:
+                # Stop at Indian Court System section (that's the next major section)
+                if stripped.startswith('## Indian Court System'):
+                    break
+                
+                result_lines.append(line)
+                lines_collected += 1
+                
+                # Stop after collecting enough (complete self-rep info)
+                if lines_collected > 200:  # More lines because self-rep section is comprehensive
+                    break
+    
     # For PROPERTY DISPUTE intent - extract dispute/illegal occupation sections
-    if intent == 'dispute' or 'dispute' in str(priority_keywords).lower() or 'illegal' in str(priority_keywords).lower():
+    elif intent == 'dispute' or 'dispute' in str(priority_keywords).lower() or 'illegal' in str(priority_keywords).lower():
         in_relevant_section = False
         lines_collected = 0
         
@@ -7913,6 +8238,119 @@ def extract_relevant_section(response_text, intent, priority_keywords):
             if section_count >= 2 or len(result_lines) > 40:
                 break
     
+    # For INHERITANCE & SUCCESSION queries - extract ONLY relevant scenario
+    elif (intent == 'definition' and priority_keywords and 'Inheritance' in str(priority_keywords)) or \
+         ('inheritance' in response_text.lower() and 'scenario' in response_text.lower()):
+        query_lower = response_text.lower()
+        
+        # Map query keywords to specific scenarios
+        scenario_map = {
+            'succession certificate': 'SCENARIO 10',
+            'joint succession': 'SCENARIO 10',
+            'adopted child': 'SCENARIO 9',
+            'adoption rights': 'SCENARIO 9',
+            'electricity bill': 'ownership',
+            'utility bill': 'ownership',
+            'property document': 'ownership',
+            'legal heir certificate': 'SCENARIO 2',
+            'noc refusal': 'SCENARIO 4',
+            'noc not given': 'SCENARIO 4',
+            'missing will': 'SCENARIO 5',
+            'handwritten will': 'SCENARIO 15',
+            'ancestral land': 'SCENARIO 6',
+            'stepchildren': 'SCENARIO 7',
+            'widow rights': 'SCENARIO 8',
+            'digital assets': 'SCENARIO 10',
+            'joint ownership': 'SCENARIO 11',
+            'forged documents': 'SCENARIO 12',
+            'mutation delay': 'SCENARIO 13',
+            'daughter rights': 'SCENARIO 14',
+        }
+        
+        # Find matching scenario from user query
+        # priority_keywords contains the original query as last element
+        user_query_lower = ''
+        if priority_keywords and len(priority_keywords) > 0:
+            # Get the last element which is the original query
+            user_query_lower = str(priority_keywords[-1]).lower() if isinstance(priority_keywords, list) else str(priority_keywords).lower()
+        
+        print(f"[DEBUG] Inheritance query detected: {user_query_lower[:100]}")
+        
+        matched_scenario = None
+        for keyword, scenario in scenario_map.items():
+            if keyword in user_query_lower:
+                matched_scenario = scenario
+                print(f"[DEBUG] Matched scenario: {scenario} for keyword: {keyword}")
+                break
+        
+        if not matched_scenario:
+            print(f"[DEBUG] No specific scenario matched, showing overview")
+        
+        if matched_scenario:
+            # Extract only the matched scenario
+            in_scenario = False
+            scenario_lines = 0
+            
+            for line in lines:
+                stripped = line.strip()
+                
+                # Keep title
+                if stripped.startswith('# ') and not result_lines:
+                    result_lines.append(line)
+                    result_lines.append('')
+                    continue
+                
+                # Check if this line starts the matched scenario
+                if matched_scenario in stripped:
+                    in_scenario = True
+                    scenario_lines = 0
+                    result_lines.append(line)
+                    continue
+                
+                # Collect scenario content
+                if in_scenario:
+                    # Stop at next scenario or major section
+                    if ('SCENARIO' in stripped and matched_scenario not in stripped) or \
+                       stripped.startswith('## ⚖️') or \
+                       stripped.startswith('## 📋') or \
+                       stripped.startswith('## 💡'):
+                        break
+                    
+                    result_lines.append(line)
+                    scenario_lines += 1
+                    
+                    # Stop after reasonable scenario length
+                    if scenario_lines > 100:
+                        break
+        
+        # If no specific scenario matched, show brief overview + available scenarios list
+        if len(result_lines) < 15:
+            print(f"[DEBUG] Showing overview because result_lines is {len(result_lines)}")
+            # Add overview sections (before scenarios)
+            in_overview = True
+            for line in lines:
+                stripped = line.strip()
+                # Stop when we hit the first scenario
+                if stripped.startswith('## 🎯 **SCENARIO'):
+                    in_overview = False
+                    # Add a note about available scenarios
+                    result_lines.append('')
+                    result_lines.append('---')
+                    result_lines.append('## 📋 Available Scenarios (Ask me about any specific scenario):')
+                    result_lines.append('')
+                    result_lines.append('1. Sibling Dispute - Property division after parents death')
+                    result_lines.append('2. Transfer Property Without Will')
+                    result_lines.append('3. Succession Certificate & Digital Assets')
+                    result_lines.append('4. Adopted Child Rights')
+                    result_lines.append('5. Handwritten Will Validity')
+                    result_lines.append('6. And many more...')
+                    result_lines.append('')
+                    result_lines.append('**Ask me a specific question to get detailed guidance!**')
+                    break
+                
+                if in_overview:
+                    result_lines.append(line)
+    
     # For other intents - extract first relevant sections
     else:
         section_count = 0
@@ -7924,12 +8362,36 @@ def extract_relevant_section(response_text, intent, priority_keywords):
             result_lines.append(line)
             if stripped.startswith('##'):
                 section_count += 1
-            if section_count >= 3 or len(result_lines) > 50:
+            # Limit to 25 lines for inheritance, 50 for others
+            max_lines = 25 if 'SCENARIO' in response_text else 50
+            if section_count >= 2 or len(result_lines) > max_lines:
                 break
     
     # If nothing found, return first part of response
     if len(result_lines) < 10:
         result_lines = lines[:50]
+    
+    # SAFETY CHECK: If response is too long (>1200 chars) and contains SCENARIO, truncate intelligently
+    result_text = '\n'.join(result_lines)
+    if len(result_text) > 1200 and 'SCENARIO' in result_text:
+        print(f"[DEBUG] Response too long ({len(result_text)} chars), truncating...")
+        # Keep only title + first scenario or show summary
+        truncated_lines = []
+        for line in result_lines[:50]:  # First 50 lines max
+            truncated_lines.append(line)
+        
+        truncated_lines.append('')
+        truncated_lines.append('---')
+        truncated_lines.append('')
+        truncated_lines.append('**💡 This is a complex topic with multiple scenarios.**')
+        truncated_lines.append('')
+        truncated_lines.append('**Please ask a more specific question, such as:**')
+        truncated_lines.append('- "How to get succession certificate?"')
+        truncated_lines.append('- "What are adopted child property rights?"')
+        truncated_lines.append('- "Is electricity bill proof of ownership?"')
+        truncated_lines.append('- "Can I challenge a handwritten will?"')
+        truncated_lines.append('')
+        result_lines = truncated_lines
     
     # Always add citations at the end
     for i, line in enumerate(lines):

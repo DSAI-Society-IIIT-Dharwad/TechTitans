@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MessageSquarePlus, History, User, LogOut, ChevronLeft, ChevronRight, Trash2, Clock } from 'lucide-react';
+import { MessageSquarePlus, History, User, LogOut, ChevronLeft, ChevronRight, Trash2 } from 'lucide-react';
 
 const Sidebar = ({ user, onLogout, conversations, currentConversationId, onSelectConversation, onNewChat, onDeleteConversation }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -112,12 +112,9 @@ const Sidebar = ({ user, onLogout, conversations, currentConversationId, onSelec
                         <p className="text-sm font-medium text-primary-foreground truncate">
                           {getConversationTitle(conv)}
                         </p>
-                        <div className="flex items-center gap-1 mt-1">
-                          <Clock className="w-3 h-3 text-primary-foreground/60" />
-                          <p className="text-xs text-primary-foreground/60">
-                            {formatDate(conv.timestamp)}
-                          </p>
-                        </div>
+                        <p className="text-xs text-primary-foreground/60 mt-1">
+                          {formatDate(conv.timestamp)}
+                        </p>
                       </>
                     )}
                   </button>

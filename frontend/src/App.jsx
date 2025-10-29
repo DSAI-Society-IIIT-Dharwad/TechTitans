@@ -226,20 +226,20 @@ function App() {
         </div>
 
         <div className="max-w-6xl w-full">
-          <div className="text-center mb-12 space-y-6 animate-fade-in">
-            <div className="inline-block gradient-primary px-12 py-5 rounded-full mb-8 shadow-elegant hover:shadow-glow transition-smooth">
-              <span className="text-primary-foreground font-extrabold text-4xl md:text-5xl">
+          <div className="text-center mb-12 space-y-6">
+            <div className="inline-block bg-gradient-to-br from-primary to-blue-500 px-12 py-5 rounded-full mb-8 shadow-glow hover:shadow-card-hover hover:scale-105 transition-all duration-300 animate-bounce-in">
+              <span className="text-white font-extrabold text-4xl md:text-5xl">
                 ⚖️ AI-Powered Legal Assistant
               </span>
             </div>
-            <h1 className="text-7xl md:text-9xl font-extrabold mb-10 text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text animate-gradient font-serif leading-tight">
+            <h1 className="text-7xl md:text-9xl font-extrabold mb-10 text-transparent bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text animate-gradient font-serif leading-tight animate-fade-in-up">
               Your Guide to Indian Law
             </h1>
-            <p className="text-3xl md:text-4xl text-foreground/80 max-w-4xl mx-auto mb-12 font-sans leading-relaxed font-medium">
+            <p className="text-3xl md:text-4xl text-foreground/80 max-w-4xl mx-auto mb-12 font-sans leading-relaxed font-medium animate-fade-in-up [animation-delay:200ms]">
               Get instant, accurate answers to your legal questions
             </p>
             <button
-              className="gradient-accent hover:scale-105 hover:shadow-glow transition-all duration-300 text-2xl px-12 py-8 rounded-2xl shadow-elegant font-bold text-accent-foreground"
+              className="bg-gradient-to-br from-primary to-blue-500 hover:from-blue-500 hover:to-primary hover:scale-110 hover:shadow-glow active:scale-95 transition-all duration-300 text-2xl px-12 py-8 rounded-3xl shadow-glow font-bold text-white animate-scale-in [animation-delay:400ms] hover:animate-float"
               onClick={handleNewChat}
             >
               Start Your Legal Consultation →
@@ -247,25 +247,25 @@ function App() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mt-20">
-            <div className="p-8 bg-white/80 backdrop-blur-sm border-2 border-primary/20 rounded-2xl hover:shadow-elegant hover:scale-105 hover:border-primary/40 transition-all duration-300">
-              <div className="gradient-primary w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md">
-                <BookOpen className="w-8 h-8 text-primary-foreground" />
+            <div className="p-8 bg-white rounded-3xl shadow-card hover:shadow-card-hover hover:scale-105 transition-all duration-300 animate-slide-in-left [animation-delay:600ms] hover:-translate-y-2">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-lg animate-float">
+                <BookOpen className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-primary font-serif">Comprehensive Coverage</h3>
+              <h3 className="text-2xl font-bold mb-3 text-primary font-sans">Comprehensive Coverage</h3>
               <p className="text-foreground/70 font-sans text-lg leading-relaxed">Access a vast knowledge base of Indian laws and legal precedents.</p>
             </div>
-            <div className="p-8 bg-white/80 backdrop-blur-sm border-2 border-secondary/20 rounded-2xl hover:shadow-elegant hover:scale-105 hover:border-secondary/40 transition-all duration-300">
-              <div className="gradient-primary w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md">
-                <Shield className="w-8 h-8 text-primary-foreground" />
+            <div className="p-8 bg-white rounded-3xl shadow-card hover:shadow-card-hover hover:scale-105 transition-all duration-300 animate-slide-in-left [animation-delay:800ms] hover:-translate-y-2">
+              <div className="bg-gradient-to-br from-green-500 to-emerald-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-lg animate-float [animation-delay:1s]">
+                <Shield className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-secondary font-serif">Know Your Rights</h3>
+              <h3 className="text-2xl font-bold mb-3 text-primary font-sans">Know Your Rights</h3>
               <p className="text-foreground/70 font-sans text-lg leading-relaxed">Understand your legal rights and obligations in various situations.</p>
             </div>
-            <div className="p-8 bg-white/80 backdrop-blur-sm border-2 border-accent/20 rounded-2xl hover:shadow-elegant hover:scale-105 hover:border-accent/40 transition-all duration-300">
-              <div className="gradient-accent w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md">
-                <FileText className="w-8 h-8 text-accent-foreground" />
+            <div className="p-8 bg-white rounded-3xl shadow-card hover:shadow-card-hover hover:scale-105 transition-all duration-300 animate-slide-in-left [animation-delay:1000ms] hover:-translate-y-2">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-lg animate-float [animation-delay:2s]">
+                <FileText className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-primary font-serif">Clear Guidance</h3>
+              <h3 className="text-2xl font-bold mb-3 text-primary font-sans">Clear Guidance</h3>
               <p className="text-foreground/70 font-sans text-lg leading-relaxed">Receive easy-to-understand explanations of complex legal terms.</p>
             </div>
           </div>
@@ -292,7 +292,16 @@ function App() {
         {/* Header */}
         <header className="bg-gradient-to-r from-primary via-secondary to-primary backdrop-blur-md border-b-4 border-accent shadow-elegant">
           <div className="px-8 py-6 flex items-center gap-6">
-            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+            {/* Back Button */}
+            <button
+              onClick={() => setShowChat(false)}
+              className="w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 hover:shadow-glow animate-scale-in"
+              title="Back to Home"
+            >
+              <ArrowLeft className="w-6 h-6 text-primary" />
+            </button>
+            
+            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg animate-float">
               <Scale className="w-9 h-9 text-primary" />
             </div>
             <div className="flex-1">
@@ -324,26 +333,26 @@ function App() {
         </main>
 
         {/* Input Area */}
-        <div className="fixed bottom-0 left-80 right-0 bg-card/95 backdrop-blur-md border-t-2 border-primary/30 shadow-elegant">
-          <div className="px-8 py-5">
+        <div className="fixed bottom-0 left-80 right-0 bg-white/98 backdrop-blur-md border-t border-border shadow-card">
+          <div className="px-8 py-6">
             <form onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }} className="max-w-5xl mx-auto flex gap-4">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask your legal question..."
-                className="flex-1 bg-input text-foreground border-2 border-primary/20 rounded-xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary h-16 text-lg shadow-sm"
+                className="flex-1 bg-white text-foreground border-2 border-border hover:border-primary/40 focus:border-primary rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-primary/20 h-16 text-lg shadow-card transition-all duration-200"
                 disabled={loading}
               />
               <button
                 type="submit"
-                className="gradient-accent hover:scale-105 transition-all duration-300 px-8 py-4 rounded-xl shadow-glow h-16 flex items-center justify-center font-semibold"
+                className="bg-gradient-to-br from-primary to-blue-500 hover:from-blue-500 hover:to-primary hover:scale-105 active:scale-95 transition-all duration-300 px-8 py-4 rounded-2xl shadow-glow h-16 flex items-center justify-center font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={loading}
               >
                 {loading ? (
-                  <Loader2 className="h-7 w-7 animate-spin text-accent-foreground" />
+                  <Loader2 className="h-7 w-7 animate-spin text-white" />
                 ) : (
-                  <Send className="h-7 w-7 text-accent-foreground" />
+                  <Send className="h-7 w-7 text-white" />
                 )}
               </button>
             </form>
