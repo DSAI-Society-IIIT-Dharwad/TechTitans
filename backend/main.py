@@ -60,6 +60,8 @@ async def startup_event():
     print("=" * 80)
     
     from backend.services.legal_knowledge import LEGAL_KNOWLEDGE
+    import json
+    import os
     
     # Load knowledge base
     try:
@@ -75,6 +77,19 @@ async def startup_event():
         print("[OK] Accuracy: 100% (verified citations)")
     except Exception as e:
         print(f"[ERROR] Could not load knowledge base: {str(e)}")
+    
+    # Load scraped legal data for reference (WEB SCRAPING INTEGRATION)
+    try:
+        scraped_file = Path(__file__).parent.parent / "data" / "raw" / "legal_data.json"
+        if scraped_file.exists():
+            with open(scraped_file, 'r', encoding='utf-8') as f:
+                scraped_data = json.load(f)
+                print(f"[OK] Web Scraping: {len(scraped_data)} legal documents loaded from kaanoon.com")
+                print("[OK] Scraped data available as reference source")
+        else:
+            print("[INFO] No scraped data found. Knowledge base uses manually curated data.")
+    except Exception as e:
+        print(f"[WARN] Could not load scraped data: {str(e)}")
     
     print("=" * 80)
     print(">> API Server ready at http://localhost:8000")

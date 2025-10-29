@@ -4,43 +4,43 @@
 
 @layer base {
   :root {
-    /* Light Mode - Vibrant & Beautiful */
-    --background: 215 45% 96%;
-    --foreground: 230 65% 10%;
+    /* Professional & Clean - Light Mode */
+    --background: 210 17% 98%; /* Soft white with hint of blue */
+    --foreground: 215 25% 27%; /* Professional dark gray-blue */
     
-    --card: 0 0% 100%;
-    --card-foreground: 230 65% 10%;
+    --card: 0 0% 100%; /* Pure white */
+    --card-foreground: 215 25% 27%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 230 65% 10%;
+    --popover-foreground: 215 25% 27%;
     
-    --primary: 220 90% 52%;
+    --primary: 221 83% 53%; /* Professional blue */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 265 85% 58%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 17% 95%; /* Very light blue-gray */
+    --secondary-foreground: 215 25% 27%;
     
-    --muted: 220 40% 92%;
-    --muted-foreground: 230 30% 40%;
+    --muted: 210 17% 95%;
+    --muted-foreground: 215 16% 47%;
     
-    --accent: 42 96% 58%;
-    --accent-foreground: 230 65% 10%;
+    --accent: 199 89% 48%; /* Clean cyan */
+    --accent-foreground: 0 0% 100%;
     
-    --destructive: 0 85% 60%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 220 35% 85%;
-    --input: 220 30% 94%;
-    --ring: 220 90% 56%;
+    --border: 214 32% 91%; /* Subtle border */
+    --input: 210 17% 98%;
+    --ring: 221 83% 53%;
     
     --radius: 0.75rem;
     
-    /* Beautiful Vibrant Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(220 90% 52%), hsl(265 85% 58%));
-    --gradient-accent: linear-gradient(135deg, hsl(42 96% 58%), hsl(30 95% 55%));
-    --gradient-subtle: linear-gradient(180deg, hsl(215 60% 97%), hsl(235 50% 95%));
+    /* Professional Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(199 89% 48%));
+    --gradient-accent: linear-gradient(135deg, hsl(199 89% 48%), hsl(185 85% 45%));
+    --gradient-subtle: linear-gradient(180deg, hsl(210 17% 98%), hsl(214 32% 97%));
     
-    /* Transitions */
+    /* Smooth Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
@@ -104,11 +104,11 @@
   }
   
   .shadow-elegant {
-    box-shadow: 0 10px 30px -10px hsla(220, 90%, 52%, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
   }
   
   .shadow-glow {
-    box-shadow: 0 0 40px hsl(42 96% 58% / 0.4);
+    box-shadow: 0 0 25px hsla(221, 83%, 53%, 0.15), 0 4px 15px rgba(0, 0, 0, 0.1);
   }
 }
 

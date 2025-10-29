@@ -14,7 +14,7 @@ const ChatMessage = ({ message }) => {
         </div>
       )}
       <div className={`p-8 flex-1 rounded-2xl break-words shadow-elegant
-        ${isUser ? 'bg-gradient-to-br from-primary to-secondary text-primary-foreground rounded-br-none max-w-[70%]' : 'bg-white text-foreground border-2 border-primary/10 rounded-bl-none'}`}>
+        ${isUser ? 'bg-gradient-to-br from-primary to-accent text-primary-foreground rounded-br-none max-w-[70%]' : 'bg-card text-card-foreground border border-border rounded-bl-none'}`}>
         <div className="text-xl leading-relaxed">
           {isUser ? (
             <p className="whitespace-pre-wrap font-medium">{message.text}</p>

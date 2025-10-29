@@ -4,17 +4,13 @@ __pycache__/
 *$py.class
 *.so
 .Python
-venv/
-env/
-ENV/
-.venv
-pip-log.txt
-pip-delete-this-directory.txt
-.pytest_cache/
 *.egg-info/
+dist/
+build/
 
 # Virtual Environment
 venv/
+env/
 ENV/
 
 # IDE
@@ -24,39 +20,40 @@ ENV/
 *.swo
 *~
 
-# Node modules
-frontend/node_modules/
-frontend/dist/
-frontend/build/
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Vector Store Database
-vectorstore/
-
 # OS
 .DS_Store
 Thumbs.db
-*.bak
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Old RAG System (deprecated)
+vectorstore/
+*.bin
+
+# Node modules
+node_modules/
+
+# Build outputs
+frontend/dist/
+frontend/build/
 
 # Environment variables
 .env
 .env.local
+.env.*.local
 
 # Temporary files
-*.tmp
-temp/
 tmp/
+temp/
+*.tmp
 
-# Data files (you can include or exclude as needed)
-# Uncomment the line below if you don't want to include training data
-# data/
-
-# Build artifacts
-*.pyc
-*.pyo
-*.pyd
+# Jupyter Notebooks
+.ipynb_checkpoints/
